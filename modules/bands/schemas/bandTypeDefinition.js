@@ -7,6 +7,12 @@ export const bandTypeDefinition = gql`
         years: [String]
     }
     
+    input MemberInput {
+        artist: String
+        instrument: String
+        years: [String]
+    }
+    
     type Band {
         id: ID!
         name: String
@@ -18,5 +24,25 @@ export const bandTypeDefinition = gql`
     
     type Query {
         bands: [Band]!
+        band(id: ID!): Band
+    }
+    
+    type Mutation {
+        createBand(
+            name: String,
+            origin: String,
+            members: [MemberInput],
+            website: String,
+            genres: String
+        ): Band
+        deleteBand(id: ID!): DeletedItem
+        updateBand(
+            currentId: ID!,
+            name: String,
+            origin: String,
+            members: [MemberInput],
+            website: String,
+            genres: String
+        ): Band
     }
 `;

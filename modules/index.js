@@ -7,9 +7,9 @@ import {userMutationsResolver, userResolver} from "./users/resolvers/userResolve
 import {genreTypeDefinition} from "./genres/schemas/genreTypeDefinition.js";
 import {genreResolverMutations, genreResolverQueries} from "./genres/resolvers/genreResolver.js";
 import {artistTypeDefinition} from "./artists/schemas/artistTypeDefinition.js";
-import {artistResolver} from "./artists/resolvers/artistResolver.js";
+import {artistMutationResolver, artistQueryResolver} from "./artists/resolvers/artistResolver.js";
 import {bandTypeDefinition} from "./bands/schemas/bandTypeDefinition.js";
-import {bandResolver} from "./bands/resolvers/bandResolver.js";
+import {bandMutationResolver, bandQueryResolver} from "./bands/resolvers/bandResolver.js";
 import {trackTypeDefinition} from "./tracks/schemas/trackTypeDefinition.js";
 import {trackResolver} from "./tracks/resolvers/trackResolver.js";
 import {favouriteTypeDefinition} from "./favourites/schemas/favouriteTypeDefinition.js";
@@ -23,13 +23,15 @@ const resolvers = {
         ...albumResolver,
         ...userResolver,
         ...genreResolverQueries,
-        ...artistResolver,
-        ...bandResolver,
+        ...artistQueryResolver,
+        ...bandQueryResolver,
         ...trackResolver
     },
     Mutation: {
         ...genreResolverMutations,
-        ...userMutationsResolver
+        ...userMutationsResolver,
+        ...bandMutationResolver,
+        ...artistMutationResolver,
     }
 };
 
@@ -57,7 +59,9 @@ const server = new ApolloServer({
         // see https://www.apollographql.com/docs/apollo-server/api/apollo-server/#middleware-specific-context-fields
 
         // Get the user token from the headers.
-        const token = req.headers.authorization || '';
+        // const token = req.headers.authorization || '';
+
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmJmMDMyNzJlYTVkODJiZTExMDE4MzYiLCJmaXJzdE5hbWUiOiJmaXJzdCBuYW1lIiwibGFzdE5hbWUiOiJsYXN0IG5hbWUiLCJlbWFpbCI6Im1ldDkxMjlAZ21haWwuY29tIiwiaWF0IjoxNjU2Njg1NTQyfQ.xRJhUVzcRiVnG6ZaIW77hA7J5HdqFfr5FrOo5nCx8tM";
 
         // Try to retrieve a user with the token
         // const user = getUser(token);

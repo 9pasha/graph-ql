@@ -7,6 +7,5 @@ export const getUsers = async () => {
 };
 
 export const registerUser = async (user) => {
-    console.log('Registering JSON User =', user)
     return await axios.post(`${USERS_API_URL}/register`, user);
 };
