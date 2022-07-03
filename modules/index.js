@@ -1,11 +1,11 @@
-import { ApolloServer } from 'apollo-server-express';
+import {ApolloServer} from 'apollo-server-express';
 import express from "express";
 import {albumTypeDefinitions} from "./albums/schemas/albumTypeDefinitions.js";
 import {albumResolver} from "./albums/resolvers/albumResolver.js";
 import {userTypeDefinitions} from "./users/schemas/userTypeDefinitions.js";
-import {userResolver} from "./users/resolvers/userResolver.js";
+import {userMutationsResolver, userResolver} from "./users/resolvers/userResolver.js";
 import {genreTypeDefinition} from "./genres/schemas/genreTypeDefinition.js";
-import {genreResolver} from "./genres/resolvers/genreResolver.js";
+import {genreResolverMutations, genreResolverQueries} from "./genres/resolvers/genreResolver.js";
 import {artistTypeDefinition} from "./artists/schemas/artistTypeDefinition.js";
 import {artistResolver} from "./artists/resolvers/artistResolver.js";
 import {bandTypeDefinition} from "./bands/schemas/bandTypeDefinition.js";
@@ -13,6 +13,8 @@ import {bandResolver} from "./bands/resolvers/bandResolver.js";
 import {trackTypeDefinition} from "./tracks/schemas/trackTypeDefinition.js";
 import {trackResolver} from "./tracks/resolvers/trackResolver.js";
 import {favouriteTypeDefinition} from "./favourites/schemas/favouriteTypeDefinition.js";
+import {deletedItemTypeDefinition} from "./externals/schemas/deletedItemTypeDefinition.js";
+import {jwtTokenTypeDefinition} from "./jwt/schemas/jwtTokenTypeDefinition.js";
 
 const app = express();
 
@@ -20,10 +22,14 @@ const resolvers = {
     Query: {
         ...albumResolver,
         ...userResolver,
-        ...genreResolver,
+        ...genreResolverQueries,
         ...artistResolver,
         ...bandResolver,
         ...trackResolver
+    },
+    Mutation: {
+        ...genreResolverMutations,
+        ...userMutationsResolver
     }
 };
 
@@ -35,7 +41,9 @@ const server = new ApolloServer({
         artistTypeDefinition,
         bandTypeDefinition,
         trackTypeDefinition,
-        favouriteTypeDefinition
+        favouriteTypeDefinition,
+        deletedItemTypeDefinition,
+        jwtTokenTypeDefinition
     ],
     resolvers,
     csrfPrevention: true,

@@ -1,27 +1,110 @@
-import {createGenre, deleteGenre, getGenres, updateGenre} from "../services/genreService.js";
+import {
+    createGenre,
+    deleteGenre, getGenreById,
+    getGenres,
+    updateGenre
+} from "../services/genreService.js";
 
-export const genreResolver = {
+export const genreResolverQueries = {
     async genres() {
-        const { data } = await getGenres();
+        let genres = [];
 
-        return data.items;
+        try {
+            const { data } = await getGenres();
+
+            genres = data.items;
+        } catch (error) {
+            console.log(error);
+        }
+
+        return genres;
     },
 
-    async createGenre() {
-        const { data } = await createGenre();
+    async genre(_, { id }) {
+        let genre = null;
 
-        return data;
-    },
+        try {
+            const { data } = await getGenreById(id);
 
-    async deleteGenre() {
-        const { data } = await deleteGenre();
+            data.id = data._id;
+            delete data._id;
 
-        return data;
-    },
+            genre = data;
+        } catch (error) {
+            console.log(error);
+        }
 
-    async updateGenre() {
-        const { data } = await updateGenre();
-
-        return data;
+        return genre;
     }
-}
+};
+
+export const genreResolverMutations = {
+    async createGenre(_, {
+        name,
+        description,
+        country,
+        year
+    }) {
+        let createdGenre = null;
+
+        try {
+            const { data } = await createGenre({
+                name,
+                description,
+                country,
+                year
+            });
+
+            createdGenre = data;
+            createdGenre = data;
+            createdGenre.id = data+
+                _id;
+            delete createdGenre._id;
+        } catch (error) {
+            console.log(error);
+        }
+
+        return createdGenre;
+    },
+
+    async deleteGenre(_, { id }) {
+        let deletedItem = null;
+
+        try {
+            const { data } = await deleteGenre(id);
+
+            deletedItem = data;
+        } catch (error) {
+            console.log(error);
+        }
+
+        console.log('Deleted item =', deletedItem)
+
+        return deletedItem;
+    },
+
+    async updateGenre(_, { currentGenreId, id, name, description, country, year }) {
+        let updatedGenre = null;
+
+        try {
+            const { data } = await updateGenre(
+                currentGenreId,
+                {
+                    _id: id,
+                    name,
+                    description,
+                    country,
+                    year
+                });
+
+            data.id = data._id;
+            delete data._id;
+
+            updatedGenre = data;
+        } catch (error) {
+            console.log(error);
+        }
+
+        return updatedGenre;
+    }
+};

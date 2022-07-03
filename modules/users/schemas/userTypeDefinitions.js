@@ -13,4 +13,14 @@ export const userTypeDefinitions = gql`
     type Query {
         users: [User]!
     }
+    
+    type Mutation {
+        register(
+            firstName: String!,
+            lastName: String!,
+            password: String!,
+            email: String!,
+            favouriteArtistIds: [String]!
+        ): User
+    }
 `;

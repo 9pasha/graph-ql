@@ -11,8 +11,24 @@ export const genreTypeDefinition = gql`
     
     type Query {
         genres: [Genre]
-        createGenre: [Genre]
-        deleteGenre: Boolean
-        updateGenre: [Genre]
+        genre(id: ID!): Genre
+    }
+    
+    type Mutation {
+        createGenre(
+            name: String,
+            description: String,
+            country: String,
+            year: Int
+        ): Genre
+        deleteGenre(id: ID!): DeletedItem
+        updateGenre(
+            currentGenreId: ID!,
+            id: ID!,
+            name: String,
+            description: String,
+            country: String,
+            year: Int
+        ): Genre
     }
 `;
