@@ -1,20 +1,21 @@
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
-import { albumTypeDefinitions } from './albums/schemas/albumTypeDefinitions';
-import { albumResolver } from './albums/resolvers/albumResolver';
-import { userTypeDefinitions } from './users/schemas/userTypeDefinitions';
-import { userMutationsResolver, userQueryResolver } from './users/resolvers/userResolver';
-import { genreTypeDefinition } from './genres/schemas/genreTypeDefinition';
-import { genreResolverMutations, genreResolverQueries } from './genres/resolvers/genreResolver';
-import { artistTypeDefinition } from './artists/schemas/artistTypeDefinition';
-import { artistMutationResolver, artistQueryResolver } from './artists/resolvers/artistResolver';
-import { bandTypeDefinition } from './bands/schemas/bandTypeDefinition';
-import { bandMutationResolver, bandQueryResolver } from './bands/resolvers/bandResolver';
-import { trackTypeDefinition } from './tracks/schemas/trackTypeDefinition';
-import { trackMutationResolver, trackQueryResolver } from './tracks/resolvers/trackResolver';
-import { favouriteTypeDefinition } from './favourites/schemas/favouriteTypeDefinition';
-import { deletedItemTypeDefinition } from './externals/schemas/deletedItemTypeDefinition';
-import { jwtTokenTypeDefinition } from './jwt/schemas/jwtTokenTypeDefinition';
+import { albumTypeDefinitions } from './albums/schemas/albumTypeDefinitions.js';
+import { albumResolver } from './albums/resolvers/albumResolver.js';
+import { userTypeDefinitions } from './users/schemas/userTypeDefinitions.js';
+import { userMutationsResolver, userQueryResolver } from './users/resolvers/userResolver.js';
+import { genreTypeDefinition } from './genres/schemas/genreTypeDefinition.js';
+import { genreResolverMutations, genreResolverQueries } from './genres/resolvers/genreResolver.js';
+import { artistTypeDefinition } from './artists/schemas/artistTypeDefinition.js';
+import { artistMutationResolver, artistQueryResolver } from './artists/resolvers/artistResolver.js';
+import { bandTypeDefinition } from './bands/schemas/bandTypeDefinition.js';
+import { bandMutationResolver, bandQueryResolver } from './bands/resolvers/bandResolver.js';
+import { trackTypeDefinition } from './tracks/schemas/trackTypeDefinition.js';
+import { trackMutationResolver, trackQueryResolver } from './tracks/resolvers/trackResolver.js';
+import { favouriteTypeDefinition } from './favourites/schemas/favouriteTypeDefinition.js';
+import { deletedItemTypeDefinition } from './externals/schemas/deletedItemTypeDefinition.js';
+import { jwtTokenTypeDefinition } from './jwt/schemas/jwtTokenTypeDefinition.js';
+import { jwtQueryResolver } from './jwt/resolvers/jwtResolver.js';
 
 const app = express();
 
@@ -26,6 +27,7 @@ const resolvers = {
     ...artistQueryResolver,
     ...bandQueryResolver,
     ...trackQueryResolver,
+    ...jwtQueryResolver,
   },
   Mutation: {
     ...genreResolverMutations,

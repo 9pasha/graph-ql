@@ -1,4 +1,4 @@
-import { getUsers, registerUser } from '../services/userService';
+import { getUsers, registerUser } from '../services/userService.js';
 
 export const userQueryResolver = {
   async users() {

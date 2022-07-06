@@ -17,6 +17,7 @@
         "import/prefer-default-export": "off",
         "implicit-arrow-linebreak": "off",
         "no-return-await": "off",
-        "no-underscore-dangle": "off"
+        "no-underscore-dangle": "off",
+        "import/extensions": "off"
     }
 }
