@@ -19,7 +19,15 @@ export const bandTypeDefinition = gql`
         origin: String
         members: [Member]
         website: String
-        genres: String
+        genres: [Genre]
+    }
+    
+    input BandInput {
+        name: String
+        origin: String
+        members: [MemberInput]
+        website: String
+        genres: [GenreInput]
     }
     
     type Query {

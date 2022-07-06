@@ -1,7 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
 
-const ALBUMS_API_URL = "http://localhost:3005/v1/albums";
+const ALBUMS_API_URL = 'http://localhost:3005/v1/albums';
 
-export const getAlbums = async () => {
-    return await axios.get(ALBUMS_API_URL);
-};
+export const getAlbums = async () => await axios.get(ALBUMS_API_URL);

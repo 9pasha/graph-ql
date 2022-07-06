@@ -9,8 +9,19 @@ export const artistTypeDefinition = gql`
         birthDate: String
         birthPlace: String
         country: String
-        bands: [ID]
-        instruments: [String]!
+        bands: [Band]
+        instruments: [String]
+    }
+    
+    input ArtistInput {
+        firstName: String
+        secondName: String
+        middleName: String
+        birthDate: String
+        birthPlace: String
+        country: String
+        bands: [BandInput]
+        instruments: [String]
     }
     
     type Query {
