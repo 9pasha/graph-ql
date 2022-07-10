@@ -1,4 +1,4 @@
-import {gql} from "apollo-server-express";
+import { gql } from 'apollo-server-express';
 
 export const artistTypeDefinition = gql`
     type Artist {

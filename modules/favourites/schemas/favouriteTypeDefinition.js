@@ -1,4 +1,4 @@
-import {gql} from "apollo-server-express";
+import { gql } from 'apollo-server-express';
 
 export const favouriteTypeDefinition = gql`
     type Favourites {
@@ -12,5 +12,12 @@ export const favouriteTypeDefinition = gql`
     
     type Query {
         favourites: [Favourites]!
+    }
+    
+    type Mutation {
+        addTrackToFavourites(trackItem: FavouriteItemInput!): Track,
+        addBandToFavourites(bandItem: FavouriteItemInput!): Band,
+        addArtistToFavourites(artistItem: FavouriteItemInput!): Artist,
+        addGenreToFavourites(genreItem: FavouriteItemInput!): Genre
     }
 `;

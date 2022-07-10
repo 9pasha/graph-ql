@@ -5,7 +5,7 @@ import { albumResolver } from './albums/resolvers/albumResolver.js';
 import { userTypeDefinitions } from './users/schemas/userTypeDefinitions.js';
 import { userMutationsResolver, userQueryResolver } from './users/resolvers/userResolver.js';
 import { genreTypeDefinition } from './genres/schemas/genreTypeDefinition.js';
-import { genreResolverMutations, genreResolverQueries } from './genres/resolvers/genreResolver.js';
+import { genreMutationResolver, genreQueryResolver } from './genres/resolvers/genreResolver.js';
 import { artistTypeDefinition } from './artists/schemas/artistTypeDefinition.js';
 import { artistMutationResolver, artistQueryResolver } from './artists/resolvers/artistResolver.js';
 import { bandTypeDefinition } from './bands/schemas/bandTypeDefinition.js';
@@ -16,6 +16,7 @@ import { favouriteTypeDefinition } from './favourites/schemas/favouriteTypeDefin
 import { deletedItemTypeDefinition } from './externals/schemas/deletedItemTypeDefinition.js';
 import { jwtTokenTypeDefinition } from './jwt/schemas/jwtTokenTypeDefinition.js';
 import { jwtQueryResolver } from './jwt/resolvers/jwtResolver.js';
+import { favouriteMutationResolver, favouriteQueryResolver } from './favourites/resolvers/favouriteQueryResolver.js';
 
 const app = express();
 
@@ -23,18 +24,20 @@ const resolvers = {
   Query: {
     ...albumResolver,
     ...userQueryResolver,
-    ...genreResolverQueries,
+    ...genreQueryResolver,
     ...artistQueryResolver,
     ...bandQueryResolver,
     ...trackQueryResolver,
     ...jwtQueryResolver,
+    ...favouriteQueryResolver,
   },
   Mutation: {
-    ...genreResolverMutations,
+    ...genreMutationResolver,
     ...userMutationsResolver,
     ...bandMutationResolver,
     ...artistMutationResolver,
     ...trackMutationResolver,
+    ...favouriteMutationResolver,
   },
 };
 

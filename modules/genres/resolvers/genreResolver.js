@@ -5,7 +5,7 @@ import {
   updateGenre,
 } from '../services/genreService.js';
 
-export const genreResolverQueries = {
+export const genreQueryResolver = {
   async genres() {
     let genres = [];
 
@@ -38,7 +38,7 @@ export const genreResolverQueries = {
   },
 };
 
-export const genreResolverMutations = {
+export const genreMutationResolver = {
   async createGenre(_, {
     name,
     description,
