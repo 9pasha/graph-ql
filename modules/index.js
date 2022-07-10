@@ -69,10 +69,13 @@ const server = new ApolloServer({
     // Get the user token from the headers.
     // const token = req.headers.authorization || '';
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmJmMDMyNzJlYTVkODJiZTExMDE4MzYiLCJmaXJzdE5hbWUiOiJmaXJzdCBuYW1lIiwibGFzdE5hbWUiOiJsYXN0IG5hbWUiLCJlbWFpbCI6Im1ldDkxMjlAZ21haWwuY29tIiwiaWF0IjoxNjU2Njg1NTQyfQ.xRJhUVzcRiVnG6ZaIW77hA7J5HdqFfr5FrOo5nCx8tM';
+    // eslint-disable-next-line max-len
+    // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmJmMDMyNzJlYTVkODJiZTExMDE4MzYiLCJmaXJzdE5hbWUiOiJmaXJzdCBuYW1lIiwibGFzdE5hbWUiOiJsYXN0IG5hbWUiLCJlbWFpbCI6Im1ldDkxMjlAZ21haWwuY29tIiwiaWF0IjoxNjU2Njg1NTQyfQ.xRJhUVzcRiVnG6ZaIW77hA7J5HdqFfr5FrOo5nCx8tM';
 
     // Try to retrieve a user with the token
     // const user = getUser(token);
+
+    const token = process.env.AUTH_TOKEN;
 
     // Add the user to the context
     return { token };
