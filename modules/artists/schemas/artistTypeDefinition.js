@@ -9,7 +9,7 @@ export const artistTypeDefinition = gql`
         birthDate: String
         birthPlace: String
         country: String
-        bands: [Band]
+        bands: [ID!]
         instruments: [String]
     }
     
@@ -37,7 +37,7 @@ export const artistTypeDefinition = gql`
           birthDate: String,
           birthPlace: String,
           country: String,
-          bands: [ID],
+          bands: [ID!],
           instruments: [String]!
         ): Artist
         deleteArtist(id: ID!): DeletedItem
@@ -49,7 +49,7 @@ export const artistTypeDefinition = gql`
             birthDate: String,
             birthPlace: String,
             country: String,
-            bands: [ID],
+            bands: [ID!],
             instruments: [String]!
         ): Artist
     }

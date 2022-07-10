@@ -4,9 +4,19 @@ import {
 
 export const bandQueryResolver = {
   async bands() {
+    let bands = null;
     const { data } = await getBands();
 
-    return data.items;
+    bands = data.items;
+
+    bands.forEach((band) => {
+      // eslint-disable-next-line no-param-reassign
+      band.id = band._id;
+      // eslint-disable-next-line no-param-reassign
+      delete band._id;
+    });
+
+    return bands;
   },
 
   async band(_, { id }) {

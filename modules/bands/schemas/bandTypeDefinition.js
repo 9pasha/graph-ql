@@ -19,7 +19,7 @@ export const bandTypeDefinition = gql`
         origin: String
         members: [Member]
         website: String
-        genres: [Genre]
+        genres: [ID!]
     }
     
     input BandInput {
@@ -27,7 +27,7 @@ export const bandTypeDefinition = gql`
         origin: String
         members: [MemberInput]
         website: String
-        genres: [GenreInput]
+        genres: [ID!]
     }
     
     type Query {
@@ -41,7 +41,7 @@ export const bandTypeDefinition = gql`
             origin: String,
             members: [MemberInput],
             website: String,
-            genres: String
+            genres: [ID!]
         ): Band
         deleteBand(id: ID!): DeletedItem
         updateBand(
@@ -50,7 +50,7 @@ export const bandTypeDefinition = gql`
             origin: String,
             members: [MemberInput],
             website: String,
-            genres: String
+            genres: [ID!]
         ): Band
     }
 `;

@@ -4,9 +4,19 @@ import {
 
 export const artistQueryResolver = {
   async artists() {
+    let artists = null;
     const { data } = await getArtists();
 
-    return data.items;
+    artists = data.items;
+
+    artists.forEach((artist) => {
+      // eslint-disable-next-line no-param-reassign
+      artist.id = artist._id;
+      // eslint-disable-next-line no-param-reassign
+      delete artist._id;
+    });
+
+    return artists;
   },
 
   async artist(_, { id }) {
