@@ -2,8 +2,14 @@ import { getUserById, registerUser } from '../services/userService.js';
 
 export const userQueryResolver = {
   async user(_, { id }) {
-    const userData = await getUserById(id);
-    return userData;
+    let user = null;
+    const { data } = await getUserById(id);
+
+    user = data;
+    user.id = user._id;
+    delete user._id;
+
+    return user;
   },
 };
 
