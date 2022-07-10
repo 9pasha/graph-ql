@@ -1,5 +1,5 @@
 import {
-  createAlbum, deleteAlbum, getAlbumById, getAlbums,
+  createAlbum, deleteAlbum, getAlbumById, getAlbums, updateAlbum,
 } from '../services/albums.js';
 
 export const albumQueryResolver = {
@@ -83,7 +83,36 @@ export const albumMutationResolver = {
     return deletedItem;
   },
 
-  // async updateAlbum(_, {  }, context) {
-  //
-  // }
+  async updateAlbum(_, {
+    currentId,
+    name,
+    released,
+    artists,
+    bands,
+    tracks,
+    genres,
+    image,
+  }, context) {
+    let updatedAlbum = null;
+
+    try {
+      const { data } = await updateAlbum(currentId, {
+        name,
+        released,
+        artists,
+        bands,
+        tracks,
+        genres,
+        image,
+      }, context.token);
+
+      updatedAlbum = data;
+      updatedAlbum.id = updatedAlbum._id;
+      delete updatedAlbum._id;
+    } catch (error) {
+      console.log(error);
+    }
+
+    return updatedAlbum;
+  },
 };

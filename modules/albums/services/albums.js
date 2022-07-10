@@ -15,3 +15,10 @@ export const deleteAlbum = async (id, token) =>
     `{ALBUMS_API_URL}/${id}`,
     { headers: { Authorization: `Bearer ${token}` } },
   );
+
+export const updateAlbum = async (id, album, token) =>
+  await axios.put(
+    `${ALBUMS_API_URL}/${id}`,
+    album,
+    { headers: { Authorization: `Bearer ${token}` } },
+  );

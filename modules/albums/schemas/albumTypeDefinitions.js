@@ -38,6 +38,15 @@ export const albumTypeDefinitions = gql`
             image: String
         ): Album
         deleteAlbum(id: ID!): DeletedItem
-        
+        updateAlbum(
+            currentId: ID!,
+            name: String,
+            released: Int,
+            artists: [ID!],
+            bands: [ID!],
+            tracks: [ID!],
+            genres: [ID!],
+            image: String
+        ): Album
     }
 `;
