@@ -6,10 +6,23 @@ import {
 } from '../services/favouriteService.js';
 
 export const favouriteQueryResolver = {
-  async favourites() {
-    const { data } = await getFavourites();
+  async favourites(_, item, context) {
+    if (!context.token) {
+      return null;
+    }
 
-    return data.items;
+    let favourites = null;
+    const { data } = await getFavourites(context.token);
+
+    favourites = data.items;
+
+    favourites.forEach((favourite) => {
+      // eslint-disable-next-line no-param-reassign
+      favourite.id = favourite._id;
+      delete favourites._id;
+    });
+
+    return favourites;
   },
 };
 

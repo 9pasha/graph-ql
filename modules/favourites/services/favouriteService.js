@@ -3,7 +3,8 @@ import 'dotenv/config';
 
 const { FAVOURITES_API_URL } = process.env;
 
-export const getFavourites = async () => await axios.get(FAVOURITES_API_URL);
+export const getFavourites = async (token) =>
+  await axios.get(FAVOURITES_API_URL, { headers: { Authorization: `Bearer ${token}` } });
 
 export const addTrackToFavourites = async (track, token) =>
   await axios.put(`${FAVOURITES_API_URL}/add`, track, {
