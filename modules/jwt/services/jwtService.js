@@ -1,5 +1,7 @@
 import axios from 'axios';
+import 'dotenv/config';
 
-const JWT_API_URL = 'http://localhost:3004/v1/users/login';
+const { JWT_API_URL } = process.env;
 
-export const loginUser = async (userCredentials) => await axios.post(JWT_API_URL, userCredentials);
+export const loginUser = async (userCredentials) =>
+  await axios.post(JWT_API_URL, userCredentials);

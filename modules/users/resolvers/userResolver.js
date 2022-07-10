@@ -1,9 +1,9 @@
-import { getUsers, registerUser } from '../services/userService.js';
+import { getUserById, registerUser } from '../services/userService.js';
 
 export const userQueryResolver = {
-  async users() {
-    const usersData = await getUsers();
-    return usersData;
+  async user(_, { id }) {
+    const userData = await getUserById(id);
+    return userData;
   },
 };
 

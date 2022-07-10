@@ -1,6 +1,7 @@
 import axios from 'axios';
+import 'dotenv/config';
 
-const GENRES_API_URL = 'http://localhost:3001/v1/genres';
+const { GENRES_API_URL } = process.env;
 
 export const getGenres = async () => await axios.get(GENRES_API_URL);
 

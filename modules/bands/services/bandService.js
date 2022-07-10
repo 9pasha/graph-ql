@@ -1,6 +1,7 @@
 import axios from 'axios';
+import 'dotenv/config';
 
-const BANDS_API_URL = 'http://localhost:3003/v1/bands';
+const { BANDS_API_URL } = process.env;
 
 export const getBands = async () => await axios.get(BANDS_API_URL);
 

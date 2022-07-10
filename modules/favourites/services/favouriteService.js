@@ -1,6 +1,7 @@
 import axios from 'axios';
+import 'dotenv/config';
 
-const FAVOURITES_API_URL = 'http://localhost:3007/v1/favourites';
+const { FAVOURITES_API_URL } = process.env;
 
 export const getFavourites = async () => await axios.get(FAVOURITES_API_URL);
 

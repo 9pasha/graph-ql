@@ -1,6 +1,7 @@
 import axios from 'axios';
+import 'dotenv/config';
 
-const ARTISTS_API_URL = 'http://localhost:3002/v1/artists';
+const { ARTISTS_API_URL } = process.env;
 
 export const getArtists = async () => await axios.get(ARTISTS_API_URL);
 

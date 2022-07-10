@@ -17,6 +17,7 @@ import { deletedItemTypeDefinition } from './externals/schemas/deletedItemTypeDe
 import { jwtTokenTypeDefinition } from './jwt/schemas/jwtTokenTypeDefinition.js';
 import { jwtQueryResolver } from './jwt/resolvers/jwtResolver.js';
 import { favouriteMutationResolver, favouriteQueryResolver } from './favourites/resolvers/favouriteQueryResolver.js';
+import 'dotenv/config';
 
 const app = express();
 
@@ -77,7 +78,7 @@ const server = new ApolloServer({
   },
 });
 
-const PORT = 8080;
+const PORT = process.env.GRAPH_QL_SERVER_PORT || 8080;
 
 await server.start();
 

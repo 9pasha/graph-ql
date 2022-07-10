@@ -1,7 +1,10 @@
 import axios from 'axios';
+import 'dotenv/config';
 
-const USERS_API_URL = 'http://localhost:3004/v1/users';
+const { USERS_API_URL } = process.env;
 
-export const getUsers = async () => await axios.get(USERS_API_URL);
+export const getUserById = async (id) =>
+  await axios.get(`${USERS_API_URL}/${id}`);
 
-export const registerUser = async (user) => await axios.post(`${USERS_API_URL}/register`, user);
+export const registerUser = async (user) =>
+  await axios.post(`${USERS_API_URL}/register`, user);

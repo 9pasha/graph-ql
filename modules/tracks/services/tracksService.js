@@ -1,6 +1,7 @@
 import axios from 'axios';
+import 'dotenv/config';
 
-const TRACKS_API_URL = 'http://localhost:3006/v1/tracks';
+const { TRACKS_API_URL } = process.env;
 
 export const getTracks = async () =>
   await axios.get(TRACKS_API_URL);
