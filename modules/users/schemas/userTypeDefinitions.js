@@ -4,8 +4,7 @@ export const userTypeDefinitions = gql`
     type User {
         id: ID!
         firstName: String
-        secondName: String
-        middleName: String
+        lastName: String
         password: String!
         email: String!
     }
@@ -17,11 +16,9 @@ export const userTypeDefinitions = gql`
     type Mutation {
         register(
             firstName: String!,
-            middleName: String!,
             lastName: String!,
             password: String!,
-            email: String!,
-            favouriteArtistIds: [String]!
+            email: String!
         ): User
     }
 `;
