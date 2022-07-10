@@ -13,6 +13,12 @@ export const genreQueryResolver = {
       const { data } = await getGenres();
 
       genres = data.items;
+      genres.forEach((genre) => {
+        // eslint-disable-next-line no-param-reassign
+        genre.id = genre._id;
+        // eslint-disable-next-line no-param-reassign
+        delete genre._id;
+      });
     } catch (error) {
       console.log(error);
     }

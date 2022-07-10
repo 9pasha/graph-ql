@@ -31,7 +31,6 @@ export const genreTypeDefinition = gql`
         deleteGenre(id: ID!): DeletedItem
         updateGenre(
             currentGenreId: ID!,
-            id: ID!,
             name: String,
             description: String,
             country: String,
