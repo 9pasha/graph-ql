@@ -1,7 +1,7 @@
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { albumTypeDefinitions } from './albums/schemas/albumTypeDefinitions.js';
-import { albumResolver } from './albums/resolvers/albumResolver.js';
+import { albumMutationResolver, albumQueryResolver } from './albums/resolvers/albumQueryResolver.js';
 import { userTypeDefinitions } from './users/schemas/userTypeDefinitions.js';
 import { userMutationsResolver, userQueryResolver } from './users/resolvers/userResolver.js';
 import { genreTypeDefinition } from './genres/schemas/genreTypeDefinition.js';
@@ -23,7 +23,7 @@ const app = express();
 
 const resolvers = {
   Query: {
-    ...albumResolver,
+    ...albumQueryResolver,
     ...userQueryResolver,
     ...genreQueryResolver,
     ...artistQueryResolver,
@@ -39,6 +39,7 @@ const resolvers = {
     ...artistMutationResolver,
     ...trackMutationResolver,
     ...favouriteMutationResolver,
+    ...albumMutationResolver,
   },
 };
 

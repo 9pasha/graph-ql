@@ -5,24 +5,39 @@ export const albumTypeDefinitions = gql`
         id: ID
         name: String
         released: Int
-        artists: [Artist]
-        bands: [Band]
-        tracks: [Track]
-        genres: [Genre]
+        artists: [ID!]
+        bands: [ID!]
+        tracks: [ID!]
+        genres: [ID!]
         image: String
     }
     
     input AlbumInput {
         name: String
         released: Int
-        artists: [ArtistInput]
-        bands: [BandInput]
-        tracks: [TrackInput]
-        genres: [GenreInput]
+        artists: [ID!]
+        bands: [ID!]
+        tracks: [ID!]
+        genres: [ID!]
         image: String
     }
     
     type Query {
         albums: [Album]
+        album(id: ID!): Album
+    }
+    
+    type Mutation {
+        createAlbum(
+            name: String,
+            released: Int,
+            artists: [ID!],
+            bands: [ID!],
+            tracks: [ID!],
+            genres: [ID!],
+            image: String
+        ): Album
+        deleteAlbum(id: ID!): DeletedItem
+        
     }
 `;
